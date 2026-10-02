@@ -61,10 +61,10 @@ async function obtenerProducto(id) {
 async function crearProducto() {
 
     const nuevoProducto = {
-        title: "Producto nuevo",
+        title: "Remera negra",
         price: 29.99,
         description: "Producto creado desde Node.js",
-        category: "electronics"
+        category: "men's clothing"
     };
 
     try {

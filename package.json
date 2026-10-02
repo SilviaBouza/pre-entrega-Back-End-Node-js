@@ -4,15 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "node --watch index.js",
-    "test": "mocha --node-option=experimental-modules"
-
-    
-    
+    "start": "node index.js"
   },
  
-  "author": "",
-  "license": "ISC",
+  "author": "Silvia Bouza",
+  "license": "MIT",
   "type": "module"
 }
