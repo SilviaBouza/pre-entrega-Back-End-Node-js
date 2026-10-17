@@ -58,13 +58,13 @@ async function obtenerProducto(id) {
 // POST - Crear un producto
 // ------------------------------------
 
-async function crearProducto() {
+async function crearProducto(titulo, precio, categoria) {
 
     const nuevoProducto = {
-        title: "Remera negra",
-        price: 29.99,
-        description: "Producto creado desde Node.js",
-        category: "men's clothing"
+        title: titulo,
+        price: Number(precio),
+        description: "Producto ${titulo}creado desde Node.js",
+        category: categoria
     };
 
     try {
@@ -222,15 +222,35 @@ async function ejecutar() {
     }
 
     // POST products
+    
+    // POST products
     if (
         method === "POST" &&
         resource === "products"
     ) {
 
-        await crearProducto();
+        const [titulo, precio, ...categoriaPartes] =
+            process.argv.slice(4);
+
+        const categoria = categoriaPartes.join(" ");
+
+        if (!titulo || !precio || !categoria) {
+            console.log(
+                'Uso: npm run start POST products "T-Shirt-Rex" 300 "remeras"'
+            );
+            return;
+        }
+
+        if (!Number.isFinite(Number(precio)) || Number(precio) <= 0) {
+            console.log("El precio debe ser un número mayor que cero.");
+            return;
+        }
+
+        await crearProducto(titulo, precio, categoria);
 
         return;
     }
+
 
     // PUT products/:id
     if (
